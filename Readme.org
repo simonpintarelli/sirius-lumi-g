@@ -1,0 +1,62 @@
+* Setup and run SIRIUS on LUMI-G
+
+** Spack configuration
+
+We are using a custom spack configruation, where the rocm packages are setup as external dependencies, using the official version on LUMI (rocm 5.2.3).
+
+The ~install_tree~ is set to ~$SPACK_USER_PREFIX/22.08-ext-rocm~ (variable contained in ~setup~).
+
+#+begin_src bash
+spack-config-22.08
+├── setup
+└── spack-config
+    ├── compilers.yaml
+    ├── config.yaml
+    ├── modules.yaml
+    └── packages.yaml
+#+end_src
+
+** Spack environment
+
+An example is provided in [[file:sirius-env]] to compile SIRIUS from local source for the LUMI-G partition.
+
+~spack.yaml~
+#+begin_src yaml
+  spack:
+  view: true
+  specs:
+  - sirius@develop+rocm+magma+apps+fortran build_type=Release target=zen3
+  - openblas threads=openmp
+  - cray-mpich@8.1.23
+  develop:
+    sirius:
+      spec: sirius@develop
+      path: ./SIRIUS
+  packages:
+    all:
+      variants: amdgpu_target=gfx90a amdgpu_target_sram_ecc=gfx90a
+      target: [zen3]
+  repos:
+  - ./repo
+  concretizer:
+    targets:
+      host_compatible: false
+    unify: true
+#+end_src
+
+The same ~spack.yaml~ can be used for LUMI-C, when ~sirius@develop+rocm~ by ~sirius@develop~rocm~.
+
+** Compile SIRIUS
+#+begin_src bash
+  # TODO: adapt first projid, location of git clone https://github.com/spack/spack.git as needed
+  source spack-config-22.08/setup
+  # activate the anonymous spack environment for sirius (directory containing spack.yaml)
+  spack env activate /path/to/sirius-env
+  # check concretization output before install
+  spack concretize -f
+  spack install
+#+end_src
+
+** Run SIRIUS
+Special care needs to be taken to get the CPU/GPU binding right, see also [[https://docs.lumi-supercomputer.eu/runjobs/scheduled-jobs/lumig-job/#hybrid-mpiopenmp-job][LUMI Documentation for hybrid MPI/OpenMP GPU job]]. An example is provided in
+[[file:sirius-env/sbatch-example.sh]]. Precomputed cpu masks are contained in [[file:sirius-env/binding_vars.sh]] for integer multiple of 8 ranks (all valid combinations to use 8 gpus).
