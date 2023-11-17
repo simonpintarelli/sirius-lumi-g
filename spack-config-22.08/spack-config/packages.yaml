@@ -8,13 +8,17 @@ packages:
         lapack: [openblas]
         scalapack: [netlib-scalapack]
       version: []
+    libfabric:
+      buildable: false
+      externals:
+      - spec: libfabric@1.15.2.0
+        prefix: /opt/cray/libfabric/1.15.2.0/
     cray-mpich:
       externals:
       - spec: cray-mpich@8.1.18%gcc
         prefix: /opt/cray/pe/mpich/8.1.18/ofi/GNU/9.1/
       - spec: cray-mpich@8.1.23%gcc
         prefix: /opt/cray/pe/mpich/8.1.23/ofi/GNU/9.1/
-      buildable: false
     openssh:
       externals:
       - spec: openssh@8.4p1

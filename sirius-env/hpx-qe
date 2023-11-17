@@ -1,0 +1,9 @@
+#!/bin/bash
+
+_dir=$(dirname "${BASH_SOURCE[0]}")
+. "${_dir}/.wrapper.sh"
+
+echo $LD_LIBRARY_PATH
+
+HPX="./qe-bin/bin/hp.x"
+exec ${HPX} -use_qe_scf $*

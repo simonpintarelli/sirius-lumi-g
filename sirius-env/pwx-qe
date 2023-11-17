@@ -1,0 +1,7 @@
+#!/bin/bash
+
+_dir=$(dirname "${BASH_SOURCE[0]}")
+. "${_dir}/.wrapper.sh"
+
+PWX="${_dir}/qe-bin/bin/pw.x"
+exec ${PWX} -use_qe_scf $*

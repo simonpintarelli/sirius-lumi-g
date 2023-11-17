@@ -25,9 +25,11 @@ An example is provided in [[file:sirius-env]] to compile SIRIUS from local sourc
   spack:
   view: true
   specs:
-  - sirius@develop+rocm+magma+apps+fortran build_type=Release target=zen3
+  - sirius@develop+rocm+magma+apps+fortran+memory_pool+elpa build_type=Release target=zen3
+  - fftw+openmp~mpi
+  - spfft+gpu_direct
   - openblas threads=openmp
-  - cray-mpich@8.1.23
+  - cray-mpich@8.1.27+rocm
   develop:
     sirius:
       spec: sirius@develop
@@ -42,6 +44,7 @@ An example is provided in [[file:sirius-env]] to compile SIRIUS from local sourc
     targets:
       host_compatible: false
     unify: true
+
 #+end_src
 
 The same ~spack.yaml~ can be used for LUMI-C, when ~sirius@develop+rocm~ by ~sirius@develop~rocm~.

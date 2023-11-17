@@ -1,13 +1,19 @@
 spack:
   view: true
   specs:
-  - sirius@develop+rocm+magma+apps+fortran build_type=Release target=zen3
+  - sirius@develop+nlcglib+rocm+magma+apps+fortran+memory_pool+elpa build_type=Release target=zen3
+  - fftw+openmp~mpi
+  - spfft+gpu_direct
+  - nlcglib+gpu_direct~openmp build_type=Release
   - openblas threads=openmp
-  - cray-mpich@8.1.23
+  - cray-mpich@8.1.27+rocm
   develop:
     sirius:
       spec: sirius@develop
       path: ./SIRIUS
+    nlcglib:
+      spec: nlcglib@develop
+      path: ./nlcglib
   packages:
     all:
       variants: amdgpu_target=gfx90a amdgpu_target_sram_ecc=gfx90a
