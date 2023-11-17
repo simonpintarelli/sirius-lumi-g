@@ -60,6 +60,20 @@ The same ~spack.yaml~ can be used for LUMI-C, when ~sirius@develop+rocm~ by ~sir
   spack install
 #+end_src
 
+** Compile q-e-sirius
+
+q-e-sirius cannot be built via spack, because there are llvm mod files in ~/opt/rocm~ which are being picked up by gfortran. As a workaround it's built manually via cmake.
+
+#+begin_src bash
+  git clone --depth=1 https://github.com/electronic-structure/q-e-sirius
+  # ! spack environment of sirius must be active
+  # export spack's sirius build environment for q-e-sirius
+  spack load --sh sirius > sirius.load.sh
+  # manually build ./q-e-sirius
+  ./build-qe
+#+end_src
+
+
 ** Run SIRIUS
 Special care needs to be taken to get the CPU/GPU binding right, see also [[https://docs.lumi-supercomputer.eu/runjobs/scheduled-jobs/lumig-job/#hybrid-mpiopenmp-job][LUMI Documentation for hybrid MPI/OpenMP GPU job]]. An example is provided in
 [[file:sirius-env/sbatch-example.sh]]. Precomputed cpu masks are contained in [[file:sirius-env/binding_vars.sh]] for integer multiple of 8 ranks (all valid combinations to use 8 gpus).
