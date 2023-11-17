@@ -21,13 +21,13 @@ CPU_BIND32="mask_cpu:0x2000000000000,0x4000000000000,0x8000000000000,0x100000000
 ROCR_VISIBLE_DEVICES_MAP32=(0 0 0 0 1 1 1 1 2 2 2 2 3 3 3 3 4 4 4 4 5 5 5 5 6 6 6 6 7 7 7 7)
 nt32=1
 
-rocr_devices_varname="ROCR_VISIBLE_DEVICES_MAP${SLURM_TASKS_PER_NODE}"
-cpu_bind_varname="CPU_BIND${SLURM_TASKS_PER_NODE}"
+rocr_devices_varname="ROCR_VISIBLE_DEVICES_MAP${SLURM_NTASKS_PER_NODE}"
+cpu_bind_varname="CPU_BIND${SLURM_NTASKS_PER_NODE}"
 
-rocr_devices_varname="ROCR_VISIBLE_DEVICES_MAP${SLURM_TASKS_PER_NODE}[@]"
+rocr_devices_varname="ROCR_VISIBLE_DEVICES_MAP${SLURM_NTASKS_PER_NODE}[@]"
 eval "ROCR_VISIBLE_DEVICES_MAP=(\${${rocr_devices_varname}})"
 export ROCR_VISIBLE_DEVICES_MAP
-nt_varname="nt${SLURM_TASKS_PER_NODE}"
+nt_varname="nt${SLURM_NTASKS_PER_NODE}"
 export OMP_NUM_THREADS=${!nt_varname}
 
 export CPU_BIND=${!cpu_bind_varname}
