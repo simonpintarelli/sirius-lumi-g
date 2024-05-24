@@ -1,0 +1,18 @@
+spack:
+  view: true
+  specs:
+  - sirius@develop+rocm+magma+apps+python build_type=Release
+  packages:
+    all:
+      variants: amdgpu_target=gfx90a amdgpu_target_sram_ecc=gfx90a
+      target: [zen3]
+    openblas:
+      require: [threads=openmp]
+    cray-mpich:
+      require: ['@8.1.27+rocm']
+  repos:
+  - ../repo
+  concretizer:
+    targets:
+      host_compatible: false
+    unify: true
