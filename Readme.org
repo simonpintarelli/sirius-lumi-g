@@ -1,13 +1,15 @@
 * Setup and run SIRIUS on LUMI-G
+** Preparation
+- You should have received =cray-mpich-binary-8.1.27.tar.gz=. Copy it to your home directory and adapt the url in the recipe accordingly:
+[[file:repo/packages/cray-mpich/package.py::url = "file:///users/sipintar/cray-mpich-binary-8.1.27.tar.gz"]]
+- Replace `<projid>` in [[file:spack-setup/setup::projid=<projid>]] by your project id.
 
-** Spack configuration
+** Configuration files for spack and custom spack repository
 
 We are using a custom spack configruation, where the rocm packages are setup as external dependencies, using the official version on LUMI (rocm 5.2.3).
 
-The ~install_tree~ is set to ~$SPACK_USER_PREFIX/22.08-ext-rocm~ (variable contained in ~setup~).
-
 #+begin_src bash
-spack-config-22.08
+spack-setup
 ├── setup
 └── spack-config
     ├── compilers.yaml
@@ -16,40 +18,39 @@ spack-config-22.08
     └── packages.yaml
 #+end_src
 
+In `repo` there is a custom spack recipe for `cray-mpich`. This is using a binary tarball of cray-mpich@8.1.27. It allows to use GPU direct communication, if this isn't required, in principle the usual external/module based cray-mpich can be used.
+
 ** Spack environment
 
-An example is provided in [[file:sirius-env]] to compile SIRIUS from local source for the LUMI-G partition.
+An example is provided in [[file:sirius-env]] to compile SIRIUS for the LUMI-G partition.
 
 ~spack.yaml~
 #+begin_src yaml
   spack:
-  view: true
-  specs:
-  - sirius@develop+rocm+magma+apps+fortran build_type=Release target=zen3
-  - openblas threads=openmp
-  - cray-mpich@8.1.23
-  develop:
-    sirius:
-      spec: sirius@develop
-      path: ./SIRIUS
-  packages:
-    all:
-      variants: amdgpu_target=gfx90a amdgpu_target_sram_ecc=gfx90a
-      target: [zen3]
-  repos:
-  - ./repo
-  concretizer:
-    targets:
-      host_compatible: false
-    unify: true
+    view: true
+    specs:
+    - sirius@develop+rocm+magma+apps+fortran build_type=Release
+    packages:
+      all:
+        variants: amdgpu_target=gfx90a amdgpu_target_sram_ecc=gfx90a
+        target: [zen3]
+      openblas:
+        require: [threads=openmp]
+      cray-mpich:
+        require: ['@8.1.27+rocm']
+    repos:
+    - ./repo
+    concretizer:
+      targets:
+        host_compatible: false
+      unify: true
 #+end_src
 
-The same ~spack.yaml~ can be used for LUMI-C, when ~sirius@develop+rocm~ by ~sirius@develop~rocm~.
 
 ** Compile SIRIUS
 #+begin_src bash
   # TODO: adapt first projid, location of git clone https://github.com/spack/spack.git as needed
-  source spack-config-22.08/setup
+  source spack-setup/setup
   # activate the anonymous spack environment for sirius (directory containing spack.yaml)
   spack env activate /path/to/sirius-env
   # check concretization output before install
@@ -58,5 +59,4 @@ The same ~spack.yaml~ can be used for LUMI-C, when ~sirius@develop+rocm~ by ~sir
 #+end_src
 
 ** Run SIRIUS
-Special care needs to be taken to get the CPU/GPU binding right, see also [[https://docs.lumi-supercomputer.eu/runjobs/scheduled-jobs/lumig-job/#hybrid-mpiopenmp-job][LUMI Documentation for hybrid MPI/OpenMP GPU job]]. An example is provided in
-[[file:sirius-env/sbatch-example.sh]]. Precomputed cpu masks are contained in [[file:sirius-env/binding_vars.sh]] for integer multiple of 8 ranks (all valid combinations to use 8 gpus).
+An example to set the correct cpu/gpu affinity is in file:./affinity.
