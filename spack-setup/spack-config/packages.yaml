@@ -35,7 +35,7 @@ packages:
     hip:
       buildable: false
       externals:
-      - prefix: /opt/rocm-6.0.3/hip
+      - prefix: /opt/rocm-6.0.3
         spec: hip@6.0.3
     hip-rocclr:
       buildable: false
