@@ -37,7 +37,7 @@ An example is provided in [[file:sirius-env]] to compile SIRIUS for the LUMI-G p
       openblas:
         require: [threads=openmp]
       cray-mpich:
-        require: ['@8.1.27+rocm']
+        require: ['@8.1.29+rocm']
     repos:
     - ./repo
     concretizer:
