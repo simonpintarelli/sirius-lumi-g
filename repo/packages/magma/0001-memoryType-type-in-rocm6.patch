@@ -1,0 +1,25 @@
+From 02f0f411d9bde76451ba7d6d5062760d4830a1c0 Mon Sep 17 00:00:00 2001
+From: Simon Pintarelli <simon.pintarelli@cscs.ch>
+Date: Thu, 19 Sep 2024 15:04:37 +0200
+Subject: [PATCH] memoryType -> type in rocm6
+
+---
+ interface_hip/interface.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/interface_hip/interface.cpp b/interface_hip/interface.cpp
+index 2b35b34..b83f3f6 100644
+--- a/interface_hip/interface.cpp
++++ b/interface_hip/interface.cpp
+@@ -528,7 +528,7 @@ magma_is_devptr( const void* A )
+                   #endif
+ 
+                 #elif defined(MAGMA_HAVE_HIP)
+-                return (attr.memoryType == hipMemoryTypeDevice);
++                return (attr.type == hipMemoryTypeDevice);
+                 #endif
+             }
+             else if ( err == hipErrorInvalidValue ) {
+-- 
+2.46.1
+

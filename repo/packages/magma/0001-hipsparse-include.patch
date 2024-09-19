@@ -1,0 +1,67 @@
+From f392f627286139b15736ef474891f5e270e19266 Mon Sep 17 00:00:00 2001
+From: Simon Pintarelli <simon.pintarelli@cscs.ch>
+Date: Thu, 19 Sep 2024 17:20:27 +0200
+Subject: [PATCH] hipsparse include
+
+---
+ include/magma_types.h                         | 2 +-
+ sparse_hip/include/magmasparse_types.h        | 2 +-
+ sparse_hip/testing/testing_zparilu.cpp        | 2 +-
+ sparse_hip/testing/testing_zparilu_weight.cpp | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/include/magma_types.h b/include/magma_types.h
+index e56f158..1af4d43 100644
+--- a/include/magma_types.h
++++ b/include/magma_types.h
+@@ -151,7 +151,7 @@ typedef double real_Double_t;
+     #include <hipsparse/hipsparse.h>
+     #else
+     #include <hipblas.h>
+-    #include <hipsparse.h>
++    #include <hipsparse/hipsparse.h>
+     #endif
+ 
+     // this macro allows you to define an unsupported function (primarily from hipBLAS)
+diff --git a/sparse_hip/include/magmasparse_types.h b/sparse_hip/include/magmasparse_types.h
+index 84b0811..64afc20 100644
+--- a/sparse_hip/include/magmasparse_types.h
++++ b/sparse_hip/include/magmasparse_types.h
+@@ -21,7 +21,7 @@
+ #endif
+ 
+ // includes CUDA
+-#include <hipsparse.h>
++#include <hipsparse/hipsparse.h>
+ 
+ /* (author: Cade Brown <cbrow216@vols.utk.edu>
+  *
+diff --git a/sparse_hip/testing/testing_zparilu.cpp b/sparse_hip/testing/testing_zparilu.cpp
+index c2894cd..1ea3726 100644
+--- a/sparse_hip/testing/testing_zparilu.cpp
++++ b/sparse_hip/testing/testing_zparilu.cpp
+@@ -18,7 +18,7 @@
+ // includes CUDA
+ #include <hip/hip_runtime_api.h>
+ #include <hipblas.h>
+-#include <hipsparse.h>
++#include <hipsparse/hipsparse.h>
+ #include <hip/hip_profile.h>
+ 
+ // includes, project
+diff --git a/sparse_hip/testing/testing_zparilu_weight.cpp b/sparse_hip/testing/testing_zparilu_weight.cpp
+index 10c13be..deb4b78 100644
+--- a/sparse_hip/testing/testing_zparilu_weight.cpp
++++ b/sparse_hip/testing/testing_zparilu_weight.cpp
+@@ -19,7 +19,7 @@
+ // includes CUDA
+ #include <hip/hip_runtime_api.h>
+ #include <hipblas.h>
+-#include <hipsparse.h>
++#include <hipsparse/hipsparse.h>
+ #include <hip/hip_profile.h>
+ 
+ // includes, project
+-- 
+2.46.1
+

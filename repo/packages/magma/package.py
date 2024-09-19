@@ -106,6 +106,8 @@ class Magma(CMakePackage, CudaPackage, ROCmPackage):
     patch("magma-2.5.0-cmake.patch", when="@2.5.0")
     patch("cmake-W.patch", when="@2.5.0:%nvhpc")
     patch("0001-fix-magma-build-error-with-rocm-6.0.0.patch", when="@2.7.2 ^hip@6.0 + rocm")
+    patch("0001-memoryType-type-in-rocm6.patch", when="@2.7.2 ^hip@6.0 + rocm")
+    patch("0001-hipsparse-include.patch", when="@2.7.2 ^hip@6.0 + rocm")
 
     @run_before("cmake")
     def generate_gpu_config(self):
