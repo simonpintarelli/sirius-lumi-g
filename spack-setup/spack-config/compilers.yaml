@@ -1,11 +1,11 @@
 compilers::
 - compiler:
-    spec: gcc@11.2.0
+    spec: gcc@12.2.0
     paths:
-      cc: /opt/cray/pe/gcc/11.2.0/bin/gcc
-      cxx: /opt/cray/pe/gcc/11.2.0/bin/g++
-      f77: /opt/cray/pe/gcc/11.2.0/bin/gfortran
-      fc: /opt/cray/pe/gcc/11.2.0/bin/gfortran
+      cc: /opt/cray/pe/gcc/12.2.0/bin/gcc
+      cxx: /opt/cray/pe/gcc/12.2.0/bin/g++
+      f77: /opt/cray/pe/gcc/12.2.0/bin/gfortran
+      fc: /opt/cray/pe/gcc/12.2.0/bin/gfortran
     flags: {}
     operating_system: sles15
     target: x86_64

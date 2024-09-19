@@ -1,6 +1,6 @@
 config:
     build_jobs: 32
     install_path_scheme: '{name}-{version}-{hash:7}'
-    install_tree: $SPACK_USER_PREFIX/22.08-ext-rocm/
+    install_tree: $SPACK_USER_PREFIX/24.09-ext-rocm/
     install_missing_compilers: false
     suppress_gpg_warnings: true
