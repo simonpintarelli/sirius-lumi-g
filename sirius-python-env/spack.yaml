@@ -9,7 +9,7 @@ spack:
     openblas:
       require: [threads=openmp]
     cray-mpich:
-      require: ['@8.1.27+rocm']
+      require: ['@8.1.29+rocm']
   repos:
   - ../repo
   concretizer:
