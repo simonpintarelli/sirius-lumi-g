@@ -1,7 +1,8 @@
 * Setup and run SIRIUS on LUMI-G
+*NOTE* please use spack@develop
 ** Preparation
 - You should have received =cray-mpich-binary-8.1.29.tar.gz=. Copy it to your home directory and adapt the url in the recipe accordingly:
-[[file:repo/packages/cray-mpich/package.py::url = "file:///users/sipintar/cray-mpich-binary-8.1.27.tar.gz"]]
+[[file:repo/packages/cray-mpich/package.py::url = "file:///users/sipintar/cray-mpich-binary-8.1.27.tar.gz"][link]]
 - Replace `<projid>` in [[file:spack-setup/setup::projid=<projid>]] by your project id.
 
 ** Configuration files for spack and custom spack repository
