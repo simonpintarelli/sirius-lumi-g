@@ -7,16 +7,11 @@ packages:
         blas: [openblas]
         lapack: [openblas]
         scalapack: [netlib-scalapack]
-      version: []
     libfabric:
       buildable: false
       externals:
       - spec: libfabric@1.15.2.0
         prefix: /opt/cray/libfabric/1.15.2.0/
-    #cray-mpich:
-    #  externals:
-    #  - spec: cray-mpich@8.1.29%gcc
-    #    prefix: /opt/cray/pe/mpich/8.1.29/ofi/GNU/12.3
     openssh:
       externals:
       - spec: openssh@8.4p1
