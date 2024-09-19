@@ -15,12 +15,13 @@ class CrayMpich(Package):
     """Intended to override the main cray-mpich"""
 
     homepage = "https://www.hpe.com/us/en/compute/hpc/hpc-software.html"
-    url = "file:///users/<USERNAME>/cray-mpich-binary-8.1.27.tar.gz"
+    url = "file:///users/sipintar/cray-mpich-8.1.29-gcc.x86_64.tar.gz"
     maintainers = ["haampie"]
 
     version(
-        "8.1.27",
-        sha256="0f4798eade03c4dd9d72c37598b2708618321d7a5e59460ea933f3531a33a92d"
+        "8.1.29",
+        sha256="f26e7ff4f8b9f949f53f60added9f1088907e333c0f73867c5eae1dce42f5a3f",
+        url="file:///users/sipintar/cray-mpich-8.1.29.x86_64.tar.gz"
     )
 
     variant("cuda", default=False)
