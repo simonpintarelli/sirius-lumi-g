@@ -1,4 +1,4 @@
-compilers::
+compilers:
 - compiler:
     spec: gcc@12.2.0
     paths:
