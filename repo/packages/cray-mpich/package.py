@@ -45,6 +45,7 @@ class CrayMpich(Package):
 
     # libfabric.so.1
     depends_on("libfabric@1:", type="link")
+    depends_on("xpmem", type="link")
 
     with when("%gcc"):
         # libgfortran.so.5
