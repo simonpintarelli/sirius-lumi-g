@@ -1,4 +1,5 @@
-projid=465000416
+#projid=465000416
+projid=465001618
 
 export SPACK_SYSTEM_CONFIG_PATH=$(dirname $(realpath ${BASH_SOURCE[0]}))/spack-config
 # prevent spack from using config in ~/.spack
@@ -7,4 +8,4 @@ export SPACK_USER_CONFIG_PATH=${SPACK_SYSTEM_CONFIG_PATH}
 # installation prefix
 export SPACK_USER_PREFIX=/scratch/project_${projid}/$(whoami)/spack-install
 # source spack
-source /scratch/project_${projid}/$(whoami)/spack-0.22.1/share/spack/setup-env.sh
+source /scratch/project_${projid}/$(whoami)/spack/share/spack/setup-env.sh

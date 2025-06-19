@@ -3,11 +3,18 @@
 ** Preparation
 - You should have received =cray-mpich-binary-8.1.29.tar.gz=. Copy it to your home directory and adapt the url in the recipe accordingly:
 [[file:repo/packages/cray-mpich/package.py::url = "file:///users/sipintar/cray-mpich-binary-8.1.27.tar.gz"][link]]
-- Replace `<projid>` in [[file:spack-setup/setup::projid=<projid>]] by your project id.
+- Replace =<projid>= in [[file:spack-setup/setup::projid=<projid>]] by your project id.
+- git clone spack v0.23 in scratch filesystem
+#+begin_src bash
+  # create the directory <username> in scratch beforehand
+  cd /scratch/project_<id>/<username>
+  git clone -b releases/v0.23 https://github.com/spack/spack
+#+end_src
+
 
 ** Configuration files for spack and custom spack repository
 
-We are using a custom spack configruation, where the rocm packages are setup as external dependencies, using the official version on LUMI (rocm 5.2.3).
+We are using a custom spack configruation, where the rocm packages are setup as external dependencies, using the official version on LUMI (rocm 6.0.3).
 
 #+begin_src bash
 spack-setup
@@ -19,7 +26,7 @@ spack-setup
     └── packages.yaml
 #+end_src
 
-In `repo` there is a custom spack recipe for `cray-mpich`. This is using a binary tarball of cray-mpich@8.1.27. It allows to use GPU direct communication, if this isn't required, in principle the usual external/module based cray-mpich can be used.
+In =repo= there is a custom spack recipe for =cray-mpich=. This is using a binary tarball of =cray-mpich@8.1.29=. It allows to use GPU direct communication, if this isn't required, in principle the usual external/module based cray-mpich can be used.
 
 ** Spack environment
 
@@ -58,6 +65,8 @@ An example is provided in [[file:sirius-env]] to compile SIRIUS for the LUMI-G p
   spack concretize -f
   spack install
 #+end_src
+
+** Compile QE-SIRIUS
 
 ** Run SIRIUS
 An example to set the correct cpu/gpu affinity is in file:./affinity.
