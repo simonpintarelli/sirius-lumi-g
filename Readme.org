@@ -8,7 +8,7 @@
 #+begin_src bash
   # create the directory <username> in scratch beforehand
   cd /scratch/project_<id>/<username>
-  git clone -b releases/v0.23 https://github.com/spack/spack
+  git clone --depth=1 -b releases/v0.23 https://github.com/spack/spack
 #+end_src
 
 
