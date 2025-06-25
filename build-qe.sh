@@ -12,7 +12,7 @@ QESIRIUS_DIR=/scratch/project_465001618/sipintar/q-e-sirius
 # `spack -e ./sirius-env load --sh sirius > sirius-env/sirius.load`
 source sirius-env/sirius.load
 # also load cmake (system cmake is too old)
-spack -e sirius-env load cmake
+eval "$(spack -e sirius-env load --sh cmake)"
 
 F90=mpif90 CXX=mpic++ CC=mpicc \
            cmake \
