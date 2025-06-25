@@ -14,7 +14,7 @@ source sirius-env/sirius.load
 # also load cmake (system cmake is too old)
 eval "$(spack -e sirius-env load --sh cmake)"
 
-F90=mpif90 CXX=mpic++ CC=mpicc \
+FC=mpif90 CXX=mpic++ CC=mpicc \
            cmake \
            -DQE_ENABLE_MPI=On \
            -DQE_ENABLE_HDF5=On \
