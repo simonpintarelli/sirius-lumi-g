@@ -15,11 +15,11 @@ source sirius-env/sirius.load
 eval "$(spack -e sirius-env load --sh cmake)"
 
 FC=mpif90 CXX=mpic++ CC=mpicc \
-           cmake \
-           -DQE_ENABLE_MPI=On \
-           -DQE_ENABLE_HDF5=On \
-           -DQE_ENABLE_SIRIUS=On \
-           -B $QESIRIUS_DIR/build \
-           -S $QESIRIUS_DIR
+          cmake \
+          -DQE_ENABLE_MPI=On \
+          -DQE_ENABLE_HDF5=On \
+          -DQE_ENABLE_SIRIUS=On \
+          -B $QESIRIUS_DIR/build \
+          -S $QESIRIUS_DIR
 
 cmake --build $QESIRIUS_DIR/build -j 8
