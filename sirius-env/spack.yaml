@@ -10,6 +10,8 @@ spack:
       require: [threads=openmp]
     cray-mpich:
       require: ['@8.1.29+rocm']
+    hdf5:
+      require: ['+fortran']
   repos:
   - ../repo
   concretizer:
