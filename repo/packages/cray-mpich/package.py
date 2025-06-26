@@ -16,11 +16,11 @@ class CrayMpich(Package):
 
     homepage = "https://www.hpe.com/us/en/compute/hpc/hpc-software.html"
     url = "file:///users/sipintar/cray-mpich-8.1.29-gcc.x86_64.tar.gz"
-    maintainers = ["haampie"]
+    maintainers = ["simonpintarelli"]
 
     version(
         "8.1.29",
-        sha256="f26e7ff4f8b9f949f53f60added9f1088907e333c0f73867c5eae1dce42f5a3f",
+        sha256="4e3ec12bb46e9157629aff18a49c3c1fcb5a7fa1c664dc3f4b389748759885b7",
         url="file:///users/sipintar/cray-mpich-8.1.29.x86_64.tar.gz"
     )
 
