@@ -1,5 +1,12 @@
 * Setup and run SIRIUS on LUMI-G
-*NOTE* please use spack@develop
+
+This is a workaround to install q-sirius on lumi-g. First sirius is installed
+via spack and then q-e-sirius is installed using the dependencies and cray-mpich
+from spack. The two step process is required because the systemwide rocm
+installation has been modified s.t. that it doesn't work with spack/gfortran,
+and because rocm cannot be installed via spack in practice due to filesystem
+limitation/compilation time.
+
 ** Preparation
 - You should have received =cray-mpich-binary-8.1.29.tar.gz=. Copy it to your home directory and adapt the url in the recipe accordingly:
 [[file:repo/packages/cray-mpich/package.py::url = "file:///users/sipintar/cray-mpich-binary-8.1.27.tar.gz"][link]]
