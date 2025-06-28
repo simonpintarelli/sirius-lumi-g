@@ -1,7 +1,8 @@
 spack:
   view: true
   specs:
-  - sirius@develop+rocm+magma+apps+fortran build_type=Release
+  - sirius@7.8.0+rocm+magma+apps+fortran build_type=Release
+  - nlcglib@1.3.0
   packages:
     all:
       variants: amdgpu_target=gfx90a amdgpu_target_sram_ecc=gfx90a
