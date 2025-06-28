@@ -17,6 +17,7 @@ which cmake
 
 FC=mpif90 CXX=mpic++ CC=mpicc \
           cmake \
+          -DCMAKE_INSTALL_PREFIX=./qebin \
           -DQE_ENABLE_MPI=On \
           -DQE_ENABLE_HDF5=On \
           -DQE_ENABLE_SIRIUS=On \
@@ -24,4 +25,4 @@ FC=mpif90 CXX=mpic++ CC=mpicc \
           -S $QESIRIUS_DIR
 
 cmake --build $QESIRIUS_DIR/build -j 8
-cmake --install-prefix=./bin --install $QESIRIUS_DIR/build
+cmake --install $QESIRIUS_DIR/build
