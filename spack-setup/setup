@@ -1,4 +1,3 @@
-#projid=465000416
 projid=465001618
 
 export SPACK_SYSTEM_CONFIG_PATH=$(dirname $(realpath ${BASH_SOURCE[0]}))/spack-config

@@ -7,10 +7,10 @@
 - git clone spack v0.23 in scratch filesystem
 #+begin_src bash
   # create the directory <username> in scratch beforehand
-  cd /scratch/project_<id>/<username>
+  projid=465001618 # use your own projid
+  cd /scratch/project_$projid/$(whoami)
   git clone --depth=1 -b releases/v0.23 https://github.com/spack/spack
 #+end_src
-
 
 ** Configuration files for spack and custom spack repository
 
@@ -56,11 +56,12 @@ An example is provided in [[file:sirius-env]] to compile SIRIUS for the LUMI-G p
 
 
 ** Compile SIRIUS
+
 #+begin_src bash
   # TODO: adapt first projid, location of git clone https://github.com/spack/spack.git as needed
   source spack-setup/setup
   # activate the anonymous spack environment for sirius (directory containing spack.yaml)
-  spack env activate /path/to/sirius-env
+  spack env activate ./sirius-env
   # check concretization output before install
   spack concretize -f
   spack install
@@ -68,5 +69,28 @@ An example is provided in [[file:sirius-env]] to compile SIRIUS for the LUMI-G p
 
 ** Compile QE-SIRIUS
 
-** Run SIRIUS
-An example to set the correct cpu/gpu affinity is in file:./affinity.
+QE-SIRIUS can be installed via spack. Unfortunately not on lumi, because the
+systemwide rocm installation contains fortran mod files from llvm, these are
+incompatible with gfortran. Therefore it's not possible to install QE using
+spack. In principle rocm could be installed in spack, however, the slow filesystem (and
+possibly insufficient inode qutoa) makes this almost impossible.
+
+Preparation (download QE-SIRIUS)
+#+begin_src bash
+  cd /scratch/project_xxxx/$(whoami)
+  curl -L https://github.com/electronic-structure/q-e-sirius/archive/refs/tags/q-e-sirius/1.0.1.tar.gz | tar -xzf -
+#+end_src
+
+Replace `QESIRIUS_DIR` in `build-qe.sh` by the corresponding directory in SCRATCH.
+
+Compilation
+#+begin_src
+ spack -e ./sirius-env load --sh sirius > ./sirius-env/sirius.load
+ source sirius.load
+  ./build-qe.sh
+#+end_src
+
+This is done in scratch because (inode) quota in home might be insufficient. The SIRIUS-enabled pw.x will be installed to `./qebin`.
+
+** Run QE-SIRIUS
+An example sbatch file is in  [[file:example-sbatch]].
