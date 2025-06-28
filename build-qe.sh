@@ -24,3 +24,4 @@ FC=mpif90 CXX=mpic++ CC=mpicc \
           -S $QESIRIUS_DIR
 
 cmake --build $QESIRIUS_DIR/build -j 8
+cmake --install-prefix=./bin --install $QESIRIUS_DIR/build
