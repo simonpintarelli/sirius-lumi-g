@@ -8,8 +8,8 @@ and because rocm cannot be installed via spack in practice due to filesystem
 limitation/compilation time.
 
 ** Preparation
-- You should have received =cray-mpich-binary-8.1.29.tar.gz=. Copy it to your home directory and adapt the url in the recipe accordingly:
-[[file:repo/packages/cray-mpich/package.py::url = "file:///users/sipintar/cray-mpich-binary-8.1.27.tar.gz"][link]]
+- You should have received =cray-mpich-binary-8.1.29.tar.gz=. Copy it to your home directory and adapt the =url= in the recipe accordingly:
+[[file:repo/packages/cray-mpich/package.py][link]]
 - Replace =<projid>= in [[file:spack-setup/setup::projid=<projid>]] by your project id.
 - git clone spack v0.23 in scratch filesystem
 #+begin_src bash
