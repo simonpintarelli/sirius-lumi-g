@@ -1,7 +1,7 @@
 modules:
   default:
     roots:
-      tcl: $SPACK_USER_PREFIX/22.08-ext-rocm/modules/tcl
+      tcl: $SPACK_USER_PREFIX/ext-rocm/modules/tcl
     enable:
       - tcl
     tcl:
