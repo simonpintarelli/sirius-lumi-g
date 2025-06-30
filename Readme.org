@@ -1,7 +1,7 @@
 * Setup and run SIRIUS on LUMI-G
 
 This is a workaround to install q-sirius on lumi-g. First sirius is installed
-via spack and then q-e-sirius is installed using the dependencies and cray-mpich
+via spack and then q-e-sirius is installed manually using the dependencies and cray-mpich
 from spack. The two step process is required because the systemwide rocm
 installation has been modified s.t. that it doesn't work with spack/gfortran,
 and because rocm cannot be installed via spack in practice due to filesystem
@@ -88,10 +88,10 @@ Preparation (download QE-SIRIUS)
   curl -L https://github.com/electronic-structure/q-e-sirius/archive/refs/tags/q-e-sirius/1.0.1.tar.gz | tar -xzf -
 #+end_src
 
-Replace `QESIRIUS_DIR` in `build-qe.sh` by the corresponding directory in SCRATCH.
+Replace =QESIRIUS_DIR= in =build-qe.sh= by the corresponding directory in SCRATCH.
 
 Compilation
-#+begin_src
+#+begin_src bash
  spack -e ./sirius-env load --sh sirius > ./sirius-env/sirius.load
  source sirius.load
   ./build-qe.sh
