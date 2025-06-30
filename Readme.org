@@ -44,7 +44,7 @@ An example is provided in [[file:sirius-env]] to compile SIRIUS for the LUMI-G p
   spack:
     view: true
     specs:
-    - sirius@develop+rocm+magma+apps+fortran build_type=Release
+    - sirius@7.8.0+rocm+magma+apps+fortran build_type=Release
     packages:
       all:
         variants: amdgpu_target=gfx90a amdgpu_target_sram_ecc=gfx90a
@@ -93,7 +93,7 @@ Replace =QESIRIUS_DIR= in =build-qe.sh= by the corresponding directory in SCRATC
 Compilation
 #+begin_src bash
  spack -e ./sirius-env load --sh sirius > ./sirius-env/sirius.load
- source sirius.load
+ source ./sirius-env/sirius.load
   ./build-qe.sh
 #+end_src
 
