@@ -21,7 +21,7 @@ export MPICH_GPU_SUPPORT_ENABLED=1
 source ./binding_vars.sh
 
 # set evp solver for sirius
-jq '. | .control.std_evp_solver_name="magma_gpu" | .control.gen_evp_solver_name="lapack")' > sirius.json
+echo "{}" | jq ' .control.std_evp_solver_name="magma_gpu" | .control.gen_evp_solver_name="lapack"' > sirius.json
 
 # TODO change as needed
 # this is the directory containing `sirius-env` and the QE-SIRIUS installation directory `qebin`
